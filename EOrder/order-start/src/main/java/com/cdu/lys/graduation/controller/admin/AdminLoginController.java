@@ -64,7 +64,8 @@ public class AdminLoginController {
         String token = JWTUtils.createJWT("admin", TimeUnit.DAYS.toMillis(1), claims, secretKey);
 
         //存入redis FIXME 可能不用存入redis
-        redisTemplate.opsForValue().set(SystemConstant.ADMIN_LOGIN_TOKEN_KEY + query.getUsername(), new TokenValue(token), SystemConstant.SYSTEM_LOGIN_TIMEOUT, TimeUnit.DAYS);
+        // redisTemplate.opsForValue().set(SystemConstant.ADMIN_LOGIN_TOKEN_KEY + query.getUsername(), new TokenValue(token), SystemConstant.SYSTEM_LOGIN_TIMEOUT, TimeUnit.DAYS);
+        redisTemplate.opsForValue().set(SystemConstant.ADMIN_LOGIN_TOKEN_KEY + query.getUsername(), new TokenValue(token), 1, TimeUnit.HOURS);
 
         AdminUserLoginVO loginVO = new AdminUserLoginVO();
         BeanUtils.copyProperties(userDTO, loginVO);

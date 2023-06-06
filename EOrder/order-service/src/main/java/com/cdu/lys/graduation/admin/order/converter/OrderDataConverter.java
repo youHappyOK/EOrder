@@ -31,12 +31,16 @@ public class OrderDataConverter {
 
         List<OrderFormDO> data = pageResult.getData();
         List<OrderFormVO> orderFormVOS = new ArrayList<>();
-        data.forEach(orderFormDO -> {
-            OrderFormVO orderFormVO = this.convertOrderFormDO2VO(orderFormDO);
-            UserDO userDO = adminUserBO.getById(orderFormDO.getUserId());
-            orderFormVO.setUsername(userDO.getUsername());
-            orderFormVOS.add(orderFormVO);
-        });
+        if (data != null) {
+            data.forEach(orderFormDO -> {
+                OrderFormVO orderFormVO = this.convertOrderFormDO2VO(orderFormDO);
+                UserDO userDO = adminUserBO.getById(orderFormDO.getUserId());
+                if (userDO != null) {
+                    orderFormVO.setUsername(userDO.getUsername());
+                    orderFormVOS.add(orderFormVO);
+                }
+            });
+        }
         PageResult<List<OrderFormVO>> result = new PageResult<>();
         BeanUtils.copyProperties(pageResult, result);
         result.setData(orderFormVOS);

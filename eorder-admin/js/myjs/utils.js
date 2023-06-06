@@ -10,7 +10,9 @@ $(document).ready(function() {
 function initData() {
 	var rootUrl = 'rootUrl'
 	if (!localStorage.getItem(rootUrl))
-		localStorage.setItem(rootUrl, 'http://localhost:8080/eorder/admin')
+		//localStorage.setItem(rootUrl, 'http://localhost:8080/eorder/admin')
+		//localStorage.setItem(rootUrl, '/eorder/admin')
+		localStorage.setItem(rootUrl, 'http://124.220.94.197:8080/eorder/admin')
 }
 
 /**
@@ -25,14 +27,14 @@ function getRootUrl() {
  * 服务器ip:port
  */
 function getServerIPPrefix(){
-	var serverPrefix='http://localhost:8080';
+	var serverPrefix='http://124.220.94.197:8080';
 	return serverPrefix;
 }
 /**
  * 获取上传文件接口
  */
 function getUploadUrl(){
-	return 'http://localhost:8080/eorder/file/upload'
+	return 'http://124.220.94.197:8080/eorder/file/upload'
 }
 
 /**

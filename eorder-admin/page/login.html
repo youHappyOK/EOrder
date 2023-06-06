@@ -156,7 +156,7 @@
 		<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
 		<script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
 		<script src="../lib/jq-module/jquery.particleground.min.js" charset="utf-8"></script>
-		<!-- <script src="../js/myjs/utils.js" charset="utf-8"></script> -->
+		<script src="../js/myjs/utils.js" charset="utf-8"></script>
 		<script>
 			layui.use(['form'], function() {
 				var form = layui.form,
@@ -198,7 +198,8 @@
 
 					//发送请求
 					$.ajax({
-						url: 'http://localhost:8080/eorder/admin/login',
+						//url: 'http://localhost:8080/eorder/admin/login',
+						url: getRootUrl() + '/login',
 						type: 'POST',
 						contentType: 'application/json',
 						data: JSON.stringify(user),

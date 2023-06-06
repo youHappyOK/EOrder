@@ -18,13 +18,14 @@ public class OrderInfoDataConverter {
 
     public List<OrderFormInfoVO> convertOrderInfoDO2VO(List<OrderFormInfoDO> orderFormInfoDOS) {
         List<OrderFormInfoVO> res = new ArrayList<>();
-        orderFormInfoDOS.forEach(orderFormInfoDO -> {
-            OrderFormInfoVO orderFormInfoVO = new OrderFormInfoVO();
-            BeanUtils.copyProperties(orderFormInfoDO, orderFormInfoVO);
-            orderFormInfoVO.setDeliveryStatus(DeliveryStatus.getMsgByCode(orderFormInfoDO.getDeliveryStatus()));
-            res.add(orderFormInfoVO);
-        });
-
+        if (orderFormInfoDOS != null) {
+            orderFormInfoDOS.forEach(orderFormInfoDO -> {
+                OrderFormInfoVO orderFormInfoVO = new OrderFormInfoVO();
+                BeanUtils.copyProperties(orderFormInfoDO, orderFormInfoVO);
+                orderFormInfoVO.setDeliveryStatus(DeliveryStatus.getMsgByCode(orderFormInfoDO.getDeliveryStatus()));
+                res.add(orderFormInfoVO);
+            });
+        }
         return res;
     }
 }
