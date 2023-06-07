@@ -28,6 +28,7 @@ public class FileServiceImpl implements FileService {
     private final Path fileStorageLocation; // 文件在本地存储的地址
 
     public FileServiceImpl(@Value("${system.file.upload-dir}") String uploadUrl) {
+        // 程序启动时就会执行
         this.fileStorageLocation = Paths.get(uploadUrl).toAbsolutePath().normalize();
         try {
             Files.createDirectories(this.fileStorageLocation);
