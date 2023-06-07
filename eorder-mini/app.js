@@ -9,10 +9,10 @@ App({
   },
   globalData: {
     userInfo: null,
-    rootUrl:"http://localhost:8080/eorder/app",
-    fileUrl:"http://localhost:8080/eorder/file",
-    staticUrl:"http://localhost:8080/eorder/static",
-    serverPrefix:"http://localhost:8080",
+    rootUrl:"http://124.220.94.197:8080/eorder/app",
+    fileUrl:"http://124.220.94.197:8080/eorder/file",
+    staticUrl:"http://124.220.94.197:8080/eorder/static",
+    serverPrefix:"http://124.220.94.197:8080",
     token:''
   },
 
