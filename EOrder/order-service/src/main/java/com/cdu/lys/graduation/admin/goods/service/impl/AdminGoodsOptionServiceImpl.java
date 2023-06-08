@@ -8,9 +8,11 @@ import com.cdu.lys.graduation.types.PageQuery;
 import com.cdu.lys.graduation.types.admin.goods.option.GoodsOptionSearchQuery;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +44,13 @@ public class AdminGoodsOptionServiceImpl implements AdminGoodsOptionService {
     public PageResult<List<AdminGoodsOption>> search(GoodsOptionSearchQuery query) {
         Page<Object> page = PageHelper.startPage(query.getPageNo(), query.getPageSize());
 
-        List<AdminGoodsOption> adminGoodsOptions = adminGoodsOptionBO.search(query.getGoodsName());
+        List<AdminGoodsOption> adminGoodsOptions = new ArrayList<>();
+
+        if (StringUtil.isEmpty(query.getGoodsName())) {
+            adminGoodsOptions = adminGoodsOptionBO.selectAll();
+        } else {
+            adminGoodsOptions = adminGoodsOptionBO.search(query.getGoodsName());
+        }
 
         PageResult<List<AdminGoodsOption>> pageResult = new PageResult<>(adminGoodsOptions);
         pageResult.setPageNum(page.getPageNum());
